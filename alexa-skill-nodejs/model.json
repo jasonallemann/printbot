@@ -1,0 +1,414 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "print bot",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "PrintListIntent",
+                    "slots": [
+                        {
+                            "name": "ListName",
+                            "type": "ListType",
+                            "samples": [
+                                "{ListName}",
+                                "the {ListName} list",
+                                "my {ListName} list",
+                                "{ListName} list"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "my {ListName} list",
+                        "{ListName} list",
+                        "the {ListName} list"
+                    ]
+                },
+                {
+                    "name": "PrintGiftTagsIntent",
+                    "slots": [
+                        {
+                            "name": "ListName",
+                            "type": "ListType",
+                            "samples": [
+                                "{ListName} list",
+                                "{ListName} ",
+                                "my {ListName} list",
+                                "the {ListName} list"
+                            ]
+                        },
+                        {
+                            "name": "Sender",
+                            "type": "WordType",
+                            "samples": [
+                                "from {Sender}",
+                                "They are from {Sender}",
+                                "{Sender}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "gift tags from {Sender}",
+                        "gift tags",
+                        "gift tags to the {ListName} list",
+                        "gift tags from {Sender} to the {ListName} list",
+                        "gift tags to the {ListName} list from {Sender}"
+                    ]
+                },
+                {
+                    "name": "MindstormsLogoIntent",
+                    "slots": [],
+                    "samples": [
+                        "mindstorms logo",
+                        "the mindstorms logo",
+                        "print the mindstorms logo"
+                    ]
+                },
+                {
+                    "name": "CalibrateIntent",
+                    "slots": [],
+                    "samples": [
+                        "calibrate the printer",
+                        "calibrate printer",
+                        "can you calibrate the printer"
+                    ]
+                },
+                {
+                    "name": "PrintWordIntent",
+                    "slots": [
+                        {
+                            "name": "Word",
+                            "type": "WordType",
+                            "samples": [
+                                "{Word}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "word {Word}",
+                        "the word {Word}"
+                    ]
+                },
+                {
+                    "name": "SetTextSizeIntent",
+                    "slots": [
+                        {
+                            "name": "TextSize",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "can I change the text size",
+                        "set text size",
+                        "set the text size",
+                        "set the text size to {TextSize} millimeters",
+                        "set text size to {TextSize}"
+                    ]
+                },
+                {
+                    "name": "GetTextSizeIntent",
+                    "slots": [],
+                    "samples": [
+                        "get the text size",
+                        "what is the text size",
+                        "what is the current text size"
+                    ]
+                },
+                {
+                    "name": "SetDialogModeIntent",
+                    "slots": [
+                        {
+                            "name": "DialogMode",
+                            "type": "OnOffType"
+                        }
+                    ],
+                    "samples": [
+                        "turn {DialogMode} the dialog mode",
+                        "set the dialog mode to {DialogMode}",
+                        "turn dialog mode {DialogMode}",
+                        "set the dialog mode"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "OnOffType",
+                    "values": [
+                        {
+                            "id": "on",
+                            "name": {
+                                "value": "on",
+                                "synonyms": [
+                                    "true"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "off",
+                            "name": {
+                                "value": "off",
+                                "synonyms": [
+                                    "false"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "WordType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "test"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ListType",
+                    "values": [
+                        {
+                            "id": "ShoppingID",
+                            "name": {
+                                "value": "Shopping"
+                            }
+                        },
+                        {
+                            "id": "TodoID",
+                            "name": {
+                                "value": "To-Do",
+                                "synonyms": [
+                                    "task",
+                                    "todo"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CalibrateIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.850442748374"
+                    },
+                    "slots": []
+                },
+                {
+                    "name": "SetTextSizeIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "TextSize",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.604998402056.906888957021"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isGreaterThanOrEqualTo",
+                                    "prompt": "Slot.Validation.604998402056.906888957021.97956548873",
+                                    "value": "3"
+                                },
+                                {
+                                    "type": "isLessThanOrEqualTo",
+                                    "prompt": "Slot.Validation.604998402056.906888957021.657153898725",
+                                    "value": "8"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "SetDialogModeIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "DialogMode",
+                            "type": "OnOffType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "PrintWordIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Word",
+                            "type": "WordType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1482473248514.1523342899867"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PrintListIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.790543190189"
+                    },
+                    "slots": [
+                        {
+                            "name": "ListName",
+                            "type": "ListType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.381971104699.409733910063"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PrintGiftTagsIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.737466429713"
+                    },
+                    "slots": [
+                        {
+                            "name": "ListName",
+                            "type": "ListType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.966097394265.514242002299"
+                            }
+                        },
+                        {
+                            "name": "Sender",
+                            "type": "WordType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.966097394265.412553719171"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Intent.850442748374",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Are you ready to calibrate the printer?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.604998402056.906888957021.97956548873",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Sorry, the text size cannot be smaller than three millimeters."
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.604998402056.906888957021.657153898725",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Sorry, the text size cannot be larger than ten millimeters."
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.604998402056.906888957021",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "You must specify a text size between three and eight millimeters."
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1482473248514.1523342899867",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What word would you like to print?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.381971104699.409733910063",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What list would you like to print?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.966097394265.514242002299",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which list contains the recipients?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.966097394265.412553719171",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Who are the gifts from?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.737466429713",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Are you ready to print gift tags to the {ListName} list from {Sender} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.790543190189",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Are you ready to print the {ListName} list ?"
+                    }
+                ]
+            }
+        ]
+    }
+}

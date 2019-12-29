@@ -1,0 +1,1 @@
+{ "textSize":40, "dialogMode":false }
